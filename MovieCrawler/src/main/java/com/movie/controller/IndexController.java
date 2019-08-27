@@ -19,10 +19,14 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(Model model) throws IOException{
-		
-		List<MovieDTO> rankList = mService.ticketRank();
+		//1. 데이터 수집
+		//2. DB에 저장
+		mService.ticketRank();
+		//3. DB에서 수집한 데이터 조회
+		List<MovieDTO> rankList = mService.movieList();
+		//4. 수집한 데이터 View단으로 전송
 		model.addAttribute("rankList",rankList);
-		
+		//5. View단 이동 
 		return "index";
 	}
 	
