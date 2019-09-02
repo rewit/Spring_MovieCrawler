@@ -5,3 +5,28 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" 
+		href="${rootPath}/resources/css/main.css?ver=2">
+
+<header>
+	<h2>무비무비</h2>
+	<nav>
+
+		<ul class="main-menu">
+			<li><a href="#">홈</a></li>
+			<li><a href="#">예매Rank Top.10</a></li>
+			<li><a href="#">커뮤니티</a></li>
+			
+			<c:if test="${empty USER}">
+				<li><a href="#">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
+			</c:if>
+			<c:if test="${!empty USER}">
+				<li><a href="#">${USER.m_email}</a></li>
+			</c:if>
+		</ul>
+	</nav>
+</header>

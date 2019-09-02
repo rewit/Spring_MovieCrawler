@@ -12,7 +12,9 @@ public interface MovieService {
 	
 	public List<MovieDTO> ticketRank() throws IOException;
 		
-	public List<MovieDTO> movieList() throws IOException;
+	public List<MovieDTO> movieList(String sort) throws IOException;
+
+
 
 	
 	

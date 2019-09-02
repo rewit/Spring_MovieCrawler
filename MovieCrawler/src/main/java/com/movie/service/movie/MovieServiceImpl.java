@@ -100,11 +100,12 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public List<MovieDTO> movieList() throws IOException {
+	public List<MovieDTO> movieList(String sort) throws IOException {
 		//DB에 저장되어 있는 실시간 영화예매순위 정보를 가져와서 View단으로 전송
-		List<MovieDTO> rankList = mDao.movieList();
+		//List<MovieDTO> rankList = mDao.movieList();
 		
-		return rankList;
+		//return rankList;
+		return mDao.movieList(sort);
 	}
 
 }

@@ -24,8 +24,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="list" resultType="com.movie.domain.movie.MovieDTO">
-		SELECT * FROM tbl_movie
+		SELECT rank,movie,imgsrc,type,opendate,bookingrate,runtime,director,actor,naverscore,daumscore,round((naverscore + daumscore)/2,1) as score
+		FROM tbl_movie 
+		<if test="sort == 'booking'">
 		ORDER BY rank
+		</if>
+		<if test="sort == 'score'">
+		ORDER BY score DESC
+		</if>
+		<if test="sort == 'date'">
+		ORDER BY opendate DESC
+		</if>
 	</select>
 	<delete id="deleteAll">
 		DELETE FROM tbl_movie

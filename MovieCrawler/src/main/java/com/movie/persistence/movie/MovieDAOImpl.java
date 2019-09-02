@@ -1,5 +1,6 @@
 package com.movie.persistence.movie;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,8 +22,10 @@ public class MovieDAOImpl implements MovieDAO{
 	}
 
 	@Override
-	public List<MovieDTO> movieList() {
-		return sqlSession.selectList("movie.list");
+	public List<MovieDTO> movieList(String sort) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sort", sort);
+		return sqlSession.selectList("movie.list", map);
 	}
 
 	@Override
