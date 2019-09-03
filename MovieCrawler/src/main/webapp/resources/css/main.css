@@ -9,6 +9,9 @@ header {
     margin: 0;
     padding:1rem;
     color:black;
+    position: fixed;
+    top:0;
+    width: 100%;
     
 }
 header h2 {
@@ -20,7 +23,6 @@ header h2 {
 	
 }
 
-
 nav {
     margin:0;
     padding:0;
@@ -30,6 +32,7 @@ nav {
 }
 ul.main-menu {
     display: flex;
+    
     list-style: none;
     margin:0;
     padding: 0;
@@ -56,12 +59,12 @@ ul.main-menu a:hover {
 
 a.top {
    position: fixed;
-   left: 50%;
-   bottom: 50px;
+   right: 40px;
+   bottom: 100px;
    display: none;
-   background-color: gray;
+   color:white;
+   background: MediumSeaGreen;
  }
-
 
 ul.main-menu a:hover nav {
     border-color: transparent;

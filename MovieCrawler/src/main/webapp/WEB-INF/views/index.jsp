@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="include/include.jsp" %>
+<%@include file="include/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}"/>
 
@@ -33,7 +33,9 @@
       } );
     </script>
 </head>
+	<div class=ps></div>
 	<div class="movie_sort">
+		<h2>실시간 예매순위</h2>
 		<span><a href="${path}/sort?sort=booking">예매순</a></span>
 		<span></span>
 		<span><a href="${path}/sort?sort=score">평점순</a></span>
@@ -82,5 +84,21 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<script type="text/javascript">
+		$(function(){
+			var sort = "${sort}";
+			
+			if(sort == "booking"){
+				$('.movie_sort > span:eq(0)').css('color','	#8B0000').css('font-weight','bold');
+			}else if(sort == "score"){
+				$('.movie_sort > span:eq(2)').css('color','	#8B0000').css('font-weight','bold');
+			}else if(sort == "date"){
+				$('.movie_sort > span:eq(4)').css('color','	#8B0000').css('font-weight','bold');
+			}
+		});
+	
+	</script>
+	
 </body>
 </html>

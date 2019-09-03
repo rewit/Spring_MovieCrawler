@@ -26,7 +26,7 @@ public class MovieDTO {
 	private double naverscore;	// 네이버 평점
 	private String daumcode; 	// 다음 영화코드
 	private double daumscore;	// 다음 평점
-	private double score;		// 네이버+다음 평점의 평균
+
 	
 	
 	
