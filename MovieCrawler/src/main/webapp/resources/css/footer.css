@@ -1,0 +1,25 @@
+@charset "UTF-8";
+footer{
+	width:100%;
+	background-color: #e3e3e3;
+	color:#ccc;
+	display: inline-block;
+	font-size: 12px;
+	padding: 0 3px;
+	line-height: 14px;
+}
+
+ul li{
+	list-style:none;
+}
+
+ul a{
+	text-decoration: none;
+}
+
+p span{
+	padding: 0 8px 0 8px;
+	font-size: 10px;
+	vertical-align: middle;
+	color:#909090;
+}

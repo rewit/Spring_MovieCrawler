@@ -7,6 +7,12 @@
 	
 	}
 	
+	h2{
+	text-align: center;
+	font-size: 37px;
+	
+	}
+	
 	.th tr.smanu{
 	margin: 0 auto;
 	background-color: #c3c3c3;
@@ -16,7 +22,65 @@
 	
 	div.ps {
 	height: 250px;
+	}
+
+	div.ls {
+	height: 250px;
+	}
 	
+	div.num{
+	margin-top:30px;
+	position: fixed;
+	right: 50%;
+	}
+	
+	div.btn{
+	position: fixed;
+	right: 150px;
+	margin-top: 30px;
+	}
+	
+	div.btn_t{
+	width:85.5%;
+	text-decoration:none;
+	margin-left: 135px;
+	padding:11px;
+	font-size:17px;
+	background-color: #ffffdd;
+
+	}
+	div.btn_b{
+	text-align: right;
+	}
+	
+	div.btn select{
+	padding: 6px;
+	border-radius: 13px;
+	}
+	
+	div.btn input{
+	padding: 6px;
+	border-radius: 7px;
+
+	}
+	
+	
+	table.tc{
+	
+	padding: 40px;
+	border: 1px solid #ccc;
+	height: 30px;
+	width: 85%;
+	text-align: center;
+	
+	}
+	
+	table tr.mtr{
+	height:40px;
+	width:20px;
+	background-color: #d0d0d0;
+	color:#ffffff;
+	font-size: 18px;
 	}
 	
 	div.movie_sort{
@@ -25,6 +89,8 @@
 	text-align: center;
 	
 	}
+	
+	
 	
 	div.movie_sort a{
 	text-decoration: none;

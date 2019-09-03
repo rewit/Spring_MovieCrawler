@@ -9,31 +9,18 @@
 
 
 <link rel="stylesheet" type="text/css" 
-		href="${rootPath}/resources/css/main.css?ver=2">
-		
+		href="${path}/resources/css/main.css?ver=2">
+
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-      $( document ).ready( function() {
-        $( window ).scroll( function() {
-          if ( $( this ).scrollTop() > 200 ) {
-            $( '.top' ).fadeIn();
-          } else {
-            $( '.top' ).fadeOut();
-          }
-        } );
-        $( '.top' ).click( function() {
-          $( 'html, body' ).animate( { scrollTop : 0 }, 800 );
-          return false;
-        } );
-      } );
-    </script>
+<link rel="stylesheet" type="text/css" 
+		href="${path}/resources/js/header.js?ver=2">
 <header>
 	<h2>무비무비</h2>
 	<nav>
 		<ul class="main-menu">
-			<li><a href="#">홈</a></li>
-			<li><a href="#">예매Rank Top.10</a></li>
-			<li><a href="#">커뮤니티</a></li>
+			<li><a href="${path}">홈</a></li>
+			<li><a href="${path}">예매Rank Top.10</a></li>
+			<li><a href="${path}/board/list">커뮤니티</a></li>
 			
 			<c:if test="${empty USER}">
 				<li><a href="#">로그인</a></li>

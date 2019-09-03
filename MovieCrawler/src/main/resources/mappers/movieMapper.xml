@@ -27,13 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT rank,movie,imgsrc,type,opendate,bookingrate,runtime,director,actor,naverscore,daumscore,round((naverscore + daumscore)/2,1) as score
 		FROM tbl_movie 
 		<if test="sort == 'booking'">
-		ORDER BY rank
+		ORDER BY rank, score DESC
 		</if>
 		<if test="sort == 'score'">
-		ORDER BY score DESC
+		ORDER BY score DESC, rank
 		</if>
 		<if test="sort == 'date'">
-		ORDER BY opendate DESC
+		ORDER BY opendate DESC, score DESC
 		</if>
 	</select>
 	<delete id="deleteAll">

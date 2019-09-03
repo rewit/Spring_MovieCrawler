@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="include/include.jsp" %>
 <%@include file="include/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}"/>
@@ -12,9 +13,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" 
-		href="${rootPath}/resources/css/main.css?ver=311">
+		href="${path}/resources/css/main.css?ver=311">
 <link rel="stylesheet" type="text/css" 
-		href="${rootPath}/resources/css/view.css?ver=312">
+		href="${path}/resources/css/view.css?ver=312">
+<link rel="stylesheet" type="text/css" 
+		href="${path}/resources/css/footer.css?ver=312">
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
@@ -65,9 +68,9 @@
 		</thead>
 		<tbody>
 
-			<c:forEach items="${rankList}" var="one">
+			<c:forEach items="${rankList}" var="one" varStatus="status">
 				<tr class=ssmanu>
-					<td>${one.rank}</td>
+					<td>${status.count}</td>
 					<td><img src="${one.imgsrc}"></td>
 					<td>${one.movie}</td>
 					<td>${one.type}</td>
@@ -99,6 +102,6 @@
 		});
 	
 	</script>
-	
+	<%@include file="include/footer.jsp" %>
 </body>
 </html>
