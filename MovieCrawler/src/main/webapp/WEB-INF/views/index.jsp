@@ -37,8 +37,8 @@
     </script>
 </head>
 	<div class=ps></div>
+	<h2>실시간 예매순위</h2>
 	<div class="movie_sort">
-		<h2>실시간 예매순위</h2>
 		<span><a href="${path}/sort?sort=booking">예매순</a></span>
 		<span></span>
 		<span><a href="${path}/sort?sort=score">평점순</a></span>

@@ -8,25 +8,40 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<script src="https://kit.fontawesome.com/6770ee5e63.js"></script>
 <link rel="stylesheet" type="text/css" 
 		href="${path}/resources/css/main.css?ver=3">
 <link rel="stylesheet" type="text/css" 
-		href="${path}/resources/css/view.css?ver=31">
+		href="${path}/resources/css/view.css?ver=3">
 <link rel="stylesheet" type="text/css" 
 		href="${path}/resources/css/footer.css?ver=3">
 <link rel="stylesheet" type="text/css" 
 		href="${path}/resources/js/header.js?ver=21">
+<style>
+	.page{
+		display: flex;
+	}
+	.page li{
+		list-style: none;
+		margin:0 10px;
+		color:blue;
+	}
+	.page li a{
+		text-decoration: none;
+		color:inherit;
+	}
+</style>
 </head>
 <%@include file="../include/header.jsp" %>
 	<div class=ls></div>
 	<h2>자유게시판</h2>
 
-		<div class="btn_t">
-		<span><a href="#">최신순</a></span>
+	<div class="btn_t">
+		<span><a href="${path}/board/list?sort_option=new">최신순</a></span>
 		<span></span>
-		<span><a href="#">조회순</a></span>
+		<span><a href="${path}/board/list?sort_option=view">조회순</a></span>
 		<span></span>
-		<span><a href="#">댓글순</a></span>
+		<span><a href="${path}/board/list?sort_option=reply">댓글순</a></span>
 		<span></span>
 	</div>
 	
@@ -51,66 +66,37 @@
 			<col width="50" />
 		</colgroup>
 		<tbody>
+		<c:forEach items="${map.list}" var="bDto">
 			<tr>
-				<td>1</td>
-				<td>제목1</td>
-				<td>작성자1</td>
-				<td>5</td>
-				<td>2</td>
+				<td>${bDto.bno}</td>
+				<td>${bDto.title}</td>
+				<td>${bDto.writer}</td>
+				<td>${bDto.viewcnt}</td>
+				<td>${bDto.replycnt}</td>
 				<td></td>
-				<td>2019/09/01</td>
+				<td>${bDto.regdate}</td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>제목2</td>
-				<td>작성자2</td>
-				<td>3</td>
-				<td>4</td>
-				<td></td>
-				<td>2019/09/02</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>제목3</td>
-				<td>작성자3</td>
-				<td>8</td>
-				<td>1</td>
-				<td></td>
-				<td>2019/09/03</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>제목4</td>
-				<td>작성자4</td>
-				<td>2</td>
-				<td>0</td>
-				<td></td>
-				<td>2019/09/02</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>제목5</td>
-				<td>작성자5</td>
-				<td>5</td>
-				<td>5</td>
-				<td></td>
-				<td>2019/09/03</td>
-			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 	<div class=num>
-		<input type="button" value="<"/>
-		<input type="button" value="1"/>
-		<input type="button" value="2"/>
-		<input type="button" value="3"/>
-		<input type="button" value="4"/>
-		<input type="button" value="5"/>
-		<input type="button" value="6"/>
-		<input type="button" value="7"/>
-		<input type="button" value="8"/>
-		<input type="button" value="9"/>
-		<input type="button" value="10"/>
-		<input type="button" value=">"/>
+	<ul class="page">
+<c:if test="${map.pager.curBlock > 1}">
+               <li><a href="${path}/board/list?curPage=${map.pager.blockBegin-10}"><i class="fas fa-angle-double-left"></i></a></li>
+               <li><a href="${path}/board/list?curPage=1">1</a></li>
+               <li><a>...</a></li>
+            </c:if>
+            <c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}"  var="idx" >
+               <li <c:out value="${map.pager.curPage == idx ? 'class=active':''}" /> > 
+                  <a href="${path}/board/list?curPage=${idx}">${idx}</a>
+               </li>
+            </c:forEach>
+            <c:if test="${map.pager.curBlock < map.pager.totBlock}">
+               <li><a>...</a></li>
+               <li><a href="${path}/board/list?curPage=${map.pager.totPage}">${map.pager.totPage}</a></li>
+               <li><a href="${path}/board/list?curPage=${map.pager.blockEnd+1}"><i class="fas fa-angle-double-right"></i></a></li>
+            </c:if>
+	</ul>
 	</div>
 	<div class=btn>
 		<select class=select name="type">
@@ -122,6 +108,17 @@
 		<input type="button" value="글쓰기"/>
 		<input type="button" value="처음으로"/>
 	</div>
-	
 </body>
+	<script type="text/javascript">
+		$(function(){
+			var sort = "${map.sort_option}";
+			if(sort == "new"){
+				$('.btn_t > span:eq(0)').css('color','	#8B0000').css('font-weight','bold');
+			}else if(sort == "view"){
+				$('.btn_t > span:eq(2)').css('color','	#8B0000').css('font-weight','bold');
+			}else if(sort == "reply"){
+				$('.btn_t > span:eq(4)').css('color','	#8B0000').css('font-weight','bold');
+			}
+		});
+	</script>
 </html>

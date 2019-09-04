@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="board">
+	<!-- 레코드 갯수 계산 -->
+	<select id="countArticle" resultType="int">
+		SELECT COUNT(*)
+		FROM tbl_board
+	</select>
+	
+	<!-- 게시글 목록 출력 -->
+	
+	<select id="listAll" resultType="com.movie.domain.board.BoardDTO">
+		<include refid="paging_header"/>
+		SELECT * 
+		FROM tbl_board
+		<if test="sort_option == 'new'">
+			ORDER BY bno DESC
+		</if>
+		<if test="sort_option == 'reply'">
+			ORDER BY replycnt DESC, bno DESC
+		</if>
+		<if test="sort_option == 'view'">
+			ORDER BY viewcnt DESC, bno DESC
+		</if>
+		<include refid="paging_footer"/>
+	</select>
+	
+	<sql id="paging_header">
+		SELECT *
+		FROM (
+			SELECT rownum AS rnum, A.*
+			FROM (
+	</sql>
+	<sql id="paging_footer">
+			) A
+		) WHERE rnum BETWEEN #{start} AND #{end}
+	</sql>
+</mapper>
