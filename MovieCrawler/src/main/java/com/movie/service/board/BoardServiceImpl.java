@@ -47,9 +47,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int countArticle() {
+	public int countArticle(String search_option, String keyword) {
 		// TODO Auto-generated method stub
-		return bDao.countArticle();
+		return bDao.countArticle(search_option, keyword);
 	}
 
 }

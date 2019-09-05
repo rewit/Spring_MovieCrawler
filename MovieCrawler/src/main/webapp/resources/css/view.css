@@ -56,6 +56,27 @@
 	color:inherit;
 	}
 	
+	.rep_color{
+	color:red;
+	background-color: yellow;
+	}
+	
+	.new_re{
+	background-color:red;
+	font-size:10px;
+	color:white;
+	border: 1px solid red;
+	padding: 2px 5px;
+	border-radius: 7px;
+	animation-name: twinkle;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	}
+	@keyframes twinkle {
+	0% 		{opacity: 0;}
+	100%	{opacity: 1;}
+	}
+	
 
 	div.btn_b{
 	text-align: right;
@@ -74,9 +95,11 @@
 	
 	
 	table.tc{
+	width: 80%;
 	border: 1px solid #ccc;
 	text-align: center;
 	}
+	
 	table tr.mtr{
 	height:40px;
 	width:20px;

@@ -9,7 +9,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countArticle" resultType="int">
 		SELECT COUNT(*)
 		FROM tbl_board
+		<include refid="search"/>
 	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="search_option != 'all'">
+				<if test="search_option == 'title'">
+					WHERE title LIKE #{keyword}
+				</if>
+				<if test="search_option == 'writer'">
+					WHERE title LIKE #{keyword}
+				</if>
+				<if test="search_option == 'content'">
+					WHERE title LIKE #{keyword}
+				</if>
+			</when>
+			<otherwise>
+			     WHERE writer LIKE #{keyword}
+					OR title LIKE #{keyword}
+					OR content LIKE #{keyword}
+			</otherwise>
+		</choose>
+	</sql>
 	
 	<!-- 게시글 목록 출력 -->
 	
@@ -17,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="paging_header"/>
 		SELECT * 
 		FROM tbl_board
+		<include refid="search"/>
 		<if test="sort_option == 'new'">
 			ORDER BY bno DESC
 		</if>

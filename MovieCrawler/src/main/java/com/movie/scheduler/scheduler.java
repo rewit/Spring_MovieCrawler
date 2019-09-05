@@ -15,7 +15,7 @@ public class scheduler {
 	@Inject
 	MovieService mService;
 	
-	@Scheduled(cron = "0 51 9 * * *")
+	@Scheduled(cron = "0 0 12 * * *")
 	public void movieCollect() throws IOException {
 		
 		mService.ticketRank();

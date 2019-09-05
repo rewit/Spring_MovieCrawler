@@ -24,9 +24,12 @@ public class BoardController {
 	
 	@GetMapping("list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int curPage,
-							@RequestParam(defaultValue = "new") String sort_option) {
+							@RequestParam(defaultValue = "new") String sort_option,
+							@RequestParam(defaultValue = "all") String search_option,
+							@RequestParam(defaultValue = "") String keyword  ) {
+		
 		//레코드 갯수 계산
-		int count = bService.countArticle();
+		int count = bService.countArticle(search_option, keyword);
 		
 		//페이지 관련 설정
 		Pager pager = new Pager(count, curPage);
@@ -38,6 +41,8 @@ public class BoardController {
 		option.put("start", start);
 		option.put("end", end);
 		option.put("sort_option",sort_option);
+		option.put("search_option", search_option);
+		option.put("keyword", keyword);
 		List<BoardDTO> list = bService.listAll(option);
 		
 		
@@ -49,6 +54,8 @@ public class BoardController {
 		map.put("pager", pager);
 		
 		map.put("sort_option",sort_option);
+		map.put("search_option",search_option);
+		map.put("keyword",keyword);
 		
 		mav.addObject("map",map);
 		mav.setViewName("board/list"); //View 단 jsp

@@ -2,6 +2,7 @@ package com.movie.persistence.board;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,16 +43,19 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> listAll(HashMap<String, Object> option) {
-		
-		
+		option.put("keyword","%"+option.get("keyword")+"%");
 		
 		return sqlSession.selectList("board.listAll",option);
 	}
 
 	@Override
-	public int countArticle() {
+	public int countArticle(String search_option, String keyword) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("board.countArticle");
+		Map<String, String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		
+		return sqlSession.selectOne("board.countArticle",map);
 	}
 
 }
