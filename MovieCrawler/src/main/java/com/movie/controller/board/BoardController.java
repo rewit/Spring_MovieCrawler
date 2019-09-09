@@ -15,6 +15,9 @@ import com.movie.domain.board.BoardDTO;
 import com.movie.service.board.BoardService;
 import com.movie.service.board.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("board/*")
 public class BoardController {
@@ -61,6 +64,15 @@ public class BoardController {
 		mav.setViewName("board/list"); //View 단 jsp
 		
 		return mav;
+	}
+	
+	@GetMapping("view")
+	public String view(String bno) {
+		
+		BoardDTO bDto = bService.read(bno);
+		ModelAttribute("one",bDto);
+		
+		return "board/view";
 	}
 	
 }

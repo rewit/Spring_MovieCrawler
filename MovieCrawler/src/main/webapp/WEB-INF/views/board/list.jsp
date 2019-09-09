@@ -68,13 +68,13 @@
 			
 			<tr>
 				<td>${bDto.bno}</td>
-				<td>${bDto.title}
+				<td><a href="${path}/board/view?bno=${bDto.bno}">${bDto.title}
 				<c:choose>
 					<c:when test="${today == regdate}">
 						<span class="new_re">New</span>
 					</c:when>
 				</c:choose>
-				
+				</a>
 				</td>
 				<td>${bDto.writer}</td>
 				<td>${bDto.viewcnt}</td>
