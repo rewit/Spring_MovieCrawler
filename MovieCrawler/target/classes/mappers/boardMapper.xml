@@ -62,4 +62,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			) A
 		) WHERE rnum BETWEEN #{start} AND #{end}
 	</sql>
+	
+	<select id="read" resultType="com.movie.domain.board.BoardDTO"> 
+ 		SELECT * FROM tbl_board 
+ 		WHERE bno = #{bno}
+ 	</select> 
+
 </mapper>

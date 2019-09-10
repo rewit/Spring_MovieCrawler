@@ -37,7 +37,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardDTO read(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return bDao.read(bno);
 	}
 
 	@Override

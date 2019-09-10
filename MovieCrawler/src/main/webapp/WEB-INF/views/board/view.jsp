@@ -14,14 +14,35 @@
 	href="${path}/resources/css/common.css?ver=2019090502">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/view.css?ver=2019090506">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1.jquery.min.js"></script>
+	
 <title>Insert title here</title>
 </head>
+<script>
+	
+if ("${one.writer}" == "${sessionScope.name}") {
+    $(".b-del").css('display', 'inline');
+    $(".b-up").css('display', 'inline');
+ 	}	
+	function comment_list(){
+		$.ajax({
+			type: "get",
+			url: "${path}/reply/list?bno=${one.bno}",
+			success: function(page){
+				$("#commentList").html(page);
+			}
+		});
+		}
+		$(document).ready(function(){
+			comment_list();
+		});
+	
+</script>
 <body>
 	<%@ include file="../include/header.jsp"%>
 
 	<div class="body-1">
 		<div class="bla"></div>
-
 		<h3>커뮤니티 게시판</h3>
 		<table>
 			<tr>
@@ -49,49 +70,14 @@
 		<div>
 			<button>게시판 목록</button>
 			<c:if test="${sessionScope.name == one.writer}">
-				<button type="button">삭제</button>
-				<button type="submit">수정</button>
+				<button type="b_del">삭제</button>
+				<button type="b_up">수정</button>
 			</c:if>
 		</div>
 	</div>
-	
 	<div id="reply_wrap">
 		<div id="commentList">
-			<div>
-				
-			</div>
-
-			<div>
-				<table>
-					<tr>
-						<th>작성자</th>
-						<td>${one.writer}</td>
-						<th>작성일자</th>
-						<td>${regdate}</td>
-					</tr>
-				</table>
-				<input class=input_btn type="text">
-				<button>등록</button>
-			</div>
-
-			<div>
-				<table>
-					<tr>
-						<th>작성자</th>
-						<td>${one.writer}</td>
-						<th>작성일자</th>
-						<td>${regdate}</td>
-						<th>내용</th>
-						<td><input type="text"></td>
-					</tr>
-				</table>
-				<input class=input_btn type="text">
-				<button>등록</button>
-			</div>
-
-			<div>
-				<div><a href="#">로그인</a>을 하셔야만 등록이 가능합니다</div>
-			</div>
+			
 		</div>
 	</div>
 </body>

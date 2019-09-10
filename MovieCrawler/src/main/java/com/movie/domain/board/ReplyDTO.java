@@ -10,17 +10,14 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @ToString
-public class BoardDTO {
-	private int bno;
-	private String title;
+@Setter
+@Getter
+public class ReplyDTO {
+
+	private int rno;
 	private String content;
 	private String writer;
-	private int viewcnt;
-	private int replycnt;
 	private Date regdate;
-	
-	
+	private int bno;
 }

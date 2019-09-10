@@ -27,7 +27,4 @@ public class MovieDTO {
 	private String daumcode; 	// 다음 영화코드
 	private double daumscore;	// 다음 평점
 
-	
-	
-	
 } 

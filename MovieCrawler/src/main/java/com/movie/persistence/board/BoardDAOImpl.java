@@ -38,7 +38,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public BoardDTO read(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("board.read",bno);
 	}
 
 	@Override
