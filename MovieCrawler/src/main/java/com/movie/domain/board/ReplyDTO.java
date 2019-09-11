@@ -20,4 +20,16 @@ public class ReplyDTO {
 	private String writer;
 	private Date regdate;
 	private int bno;
+	
+	
+	public void delete(ReplyDTO rDto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void write(ReplyDTO rDto) {
+		// TODO Auto-generated method stub
+		
+	}
 }

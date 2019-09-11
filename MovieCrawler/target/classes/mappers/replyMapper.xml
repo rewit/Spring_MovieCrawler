@@ -10,4 +10,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND bno=#{bno}
 		ORDER BY rno
 	</select>
+	<delete id="delete">
+		DELETE FROM tbl_reply
+		WHERE bno = #{bno}
+		AND rno = #{rno}
+	</delete>
+	<insert id="write">
+		INSERT INTO tbl_reply
+		VALUES(
+		#{rno},
+		#{content},
+		#{writer},
+		#{regdate},
+		#{bno}
+		)
+	
+	</insert>
 </mapper>
