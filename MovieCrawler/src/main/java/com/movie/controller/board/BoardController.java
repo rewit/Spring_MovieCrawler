@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,12 +65,17 @@ public class BoardController {
       return mav;
    }
    
-   @GetMapping("view")
-   public String view(int bno, Model model) {
-      BoardDTO bDto = bService.read(bno);
+   @GetMapping(value="view")
+   public String view(int bno, Model model, HttpSession session) {
+      BoardDTO bDto = bService.read(bno, session);
 	  model.addAttribute("one",bDto);
       return "board/view";
    }
    
+   @GetMapping(value="write")
+   public String write() {
+	   
+	   return "board/write";
+   }
    
 }

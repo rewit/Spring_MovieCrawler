@@ -2,28 +2,26 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="reply">
-	<select id="list" resultType="com.movie.domain.board.BoardDTO">
-		SELECT rno, bno, content, writer, r.regdate
-		FROM tbl_reply r, tbl_member m
-		WHERE r.writer = m.name
-		AND bno=#{bno}
-		ORDER BY rno
-	</select>
-	<delete id="delete">
-		DELETE FROM tbl_reply
-		WHERE bno = #{bno}
-		AND rno = #{rno}
-	</delete>
-	<insert id="write">
-		INSERT INTO tbl_reply
-		VALUES(
-		#{rno},
-		#{content},
-		#{writer},
-		#{regdate},
-		#{bno}
-		)
-	
-	</insert>
+<select id="list" resultType="com.movie.domain.board.ReplyDTO">
+	SELECT rno, bno, content, writer, r.regdate
+	FROM tbl_reply r, tbl_member m
+	WHERE r.writer = m.name
+	AND bno = #{bno}
+	ORDER BY rno
+</select>
+
+<delete id="delete">
+DELETE FROM tbl_reply
+WHERE bno = #{bno}
+AND rno = #{rno}
+</delete>
+<insert id="write">
+	INSERT INTO tbl_reply(rno, content, writer, bno)
+	VALUES(seq_reply.NEXTVAL, #{content}, #{writer}, #{bno})
+</insert>
+
+
 </mapper>

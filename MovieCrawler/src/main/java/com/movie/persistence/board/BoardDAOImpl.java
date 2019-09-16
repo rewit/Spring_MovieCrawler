@@ -63,6 +63,11 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		sqlSession.update("board.updateReplyCnt",map);
 	}
+
+	@Override
+	public void increaseCnt(int bno) {
+		sqlSession.update("board.increaseCnt", bno);
+	}
 	
 
 }

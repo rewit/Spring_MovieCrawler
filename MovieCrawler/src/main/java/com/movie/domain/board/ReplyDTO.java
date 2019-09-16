@@ -10,9 +10,9 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Setter
 @Getter
+@Setter
+@ToString
 public class ReplyDTO {
 
 	private int rno;
@@ -20,16 +20,13 @@ public class ReplyDTO {
 	private String writer;
 	private Date regdate;
 	private int bno;
-	
-	
 	public void delete(ReplyDTO rDto) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 	public void write(ReplyDTO rDto) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

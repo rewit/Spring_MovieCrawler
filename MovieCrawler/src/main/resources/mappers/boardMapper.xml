@@ -76,6 +76,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="flag == 'delete'">
 		SET replycnt = replycnt-1
 		</if>
-		WHERE bno=${bno}
+		WHERE bno=#{bno}
+	</update>
+	
+	<!-- 조회수 1증가 -->
+	<update id="increaseCnt" parameterType="int">
+		UPDATE tbl_board
+		SET viewcnt = viewcnt+1
+		WHERE bno =#{bno}
 	</update>
 </mapper>

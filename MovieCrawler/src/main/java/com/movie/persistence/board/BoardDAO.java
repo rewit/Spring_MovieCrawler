@@ -13,6 +13,9 @@ public interface BoardDAO {
 	public void delete(BoardDTO bDto); //게시글 삭제
 	public BoardDTO read(int bno);	   //상세게시글(1건)
 	
+	//조회수 증가 처리
+	public void increaseCnt(int bno);
+	
 	public void updateReplyCnt(Map<String, Object> map);//댓글수 증가,감소
 	
 	//게시글 조회시 필요한 메서드(페이지네이션)

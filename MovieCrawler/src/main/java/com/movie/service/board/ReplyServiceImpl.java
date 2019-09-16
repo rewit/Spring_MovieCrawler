@@ -1,5 +1,6 @@
 package com.movie.service.board;
 
+import java.beans.Transient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class ReplyServiceImpl implements ReplyService{
 		map.put("bno", rDto.getBno());
 		bDao.updateReplyCnt(map);
 	}
-
+	@Transient
 	@Override
 	public void delete(ReplyDTO rDto) {
 		// 1.댓글 삭제
