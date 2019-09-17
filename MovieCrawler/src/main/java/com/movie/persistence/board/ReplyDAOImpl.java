@@ -1,5 +1,6 @@
 package com.movie.persistence.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,8 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.movie.domain.board.ReplyDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 @Repository
-public class ReplyDAOImpl implements ReplyDAO{
+public class ReplyDAOImpl implements ReplyDAO {
 
 	@Inject
 	SqlSession sqlSession;
@@ -23,14 +27,24 @@ public class ReplyDAOImpl implements ReplyDAO{
 
 	@Override
 	public void write(ReplyDTO rDto) {
-		// TODO Auto-generated method stub
 		sqlSession.insert("reply.write",rDto);
 		
 	}
 
 	@Override
 	public void delete(ReplyDTO rDto) {
-		// TODO Auto-generated method stub
+
 		sqlSession.delete("reply.delete",rDto);
+		
 	}
+
+	@Override
+	public void updateReplyCnt(int bno, int yes) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("bno",bno);
+		map.put("yes",yes);
+		sqlSession.update("board.updateReplyCnt",map);
+	}
+	
+
 }

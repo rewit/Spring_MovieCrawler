@@ -67,15 +67,22 @@ public class BoardController {
    
    @GetMapping(value="view")
    public String view(int bno, Model model, HttpSession session) {
-      BoardDTO bDto = bService.read(bno, session);
+      bService.increaseCnt(bno, session); //조회수 처리
+	  BoardDTO bDto = bService.read(bno); //상세 게시글 출력 
 	  model.addAttribute("one",bDto);
       return "board/view";
    }
    
    @GetMapping(value="write")
-   public String write() {
-	   
+   public String write(@RequestParam(defaultValue = "0") int bno,Model model,HttpSession session) {
+	   if(bno != 0) { //게시글 수정
+		   model.addAttribute("one",bService.read(bno));
+	   }
 	   return "board/write";
+   }
+   
+   public String write(BoardDTO bDto) {
+	   return "redirect:view?bno="+bDto.getBno();
    }
    
 }

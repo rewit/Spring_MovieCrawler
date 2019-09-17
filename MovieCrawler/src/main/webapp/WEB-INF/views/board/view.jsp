@@ -2,15 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/include.jsp"%>
-<% String referer = request.getHeader("referer"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/main.css?ver=2019090305">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/album.css?ver=20190904">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/common.css?ver=2019090502">
 <link rel="stylesheet" type="text/css"
@@ -35,7 +33,7 @@
 				var="regdate" />
 			<tr>
 				<th>작성일</th>
-				<td>${regdate}</td>
+				<td>${one.regdate}</td>
 				<th class="th-1">작성자</th>
 				<td>${one.writer}</td>
 			</tr>
@@ -63,19 +61,11 @@
 	</div>
 </body>
 <script>
-	$(function() {
 
 		if ("${one.writer}" == "${sessionScope.name}") {
 			$(".button-de").css('display', 'inline');
 			$(".button-up").css('display', 'inline');
-		}
-		//뒤로가기 막기
-		history.pushState(null, document.title,location.href)
-		window.addEventListener('popstate',function(event){
-			history.pushState(null, document.title, '<%=referer%>');
-			location.reload();
-		});
-		
+	
 		function comment_list() {
 			$.ajax({
 				type: "get",
@@ -88,6 +78,11 @@
 		$(document).ready(function() {
 			comment_list();
 		})
+		
+		$(document).on("click","#button-up",function(){
+			location.href="${path}/board/write?bno=${one.bno}"
+		});
+		
 		/* View.jsp에서 commntlist의 태그, 이벤트 처리 할때 사용*/
 		$(document).on("click",".button-re-del", function() {
 			var rno =$(this).attr("data_num");
@@ -103,6 +98,17 @@
 				}
 			})
 		})
+		
+		$(document).ready(function(){
+			var bno = '${one.bno}';
+			if(bno == ''){ //게시글 등록
+				
+			}else{//게시글 수정
+				$(".btn").text("게시글 수정")
+			}
+		})
+		}
+		
 		$(document).on("click",".button-btn-wr", function() {
 			oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD", []);
 			var content = $("#replyInsert").val();
@@ -128,7 +134,7 @@
 					}
 				})
 			}
-		})
-	});
+		});
+
 </script>
 </html>

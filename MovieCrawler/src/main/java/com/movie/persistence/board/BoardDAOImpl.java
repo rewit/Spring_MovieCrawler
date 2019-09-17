@@ -18,7 +18,7 @@ public class BoardDAOImpl implements BoardDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public void writer(BoardDTO bDto) {
+	public void write(BoardDTO bDto) {
 		// TODO Auto-generated method stub
 		
 	}
