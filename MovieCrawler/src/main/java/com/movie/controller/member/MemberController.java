@@ -2,8 +2,10 @@ package com.movie.controller.member;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RespectBinding;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,10 +35,20 @@ public class MemberController {
 		return flag;
 	}
 	
-	@PostMapping(value="logout")
+	@PostMapping("logout")
 	@ResponseBody
 	public void logout(HttpSession session) {
 		mService.logOut(session);
 	}
 	
+	@GetMapping("write")
+	public String write() {
+		return "member/write";
+	}
+	@ResponseBody
+	@PostMapping("idCheck")
+	public int idCheck(String id) {
+		log.info("AJAX ID 중복체크:"+id);
+		return mService.idCheck(id);
+	}
 }

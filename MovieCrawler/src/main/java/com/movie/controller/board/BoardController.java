@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,16 +74,27 @@ public class BoardController {
       return "board/view";
    }
    
-   @GetMapping(value="write")
-   public String write(@RequestParam(defaultValue = "0") int bno,Model model,HttpSession session) {
-	   if(bno != 0) { //게시글 수정
-		   model.addAttribute("one",bService.read(bno));
-	   }
-	   return "board/write";
+   @GetMapping("write")
+   public String write(@RequestParam(defaultValue = "0") int bno, Model model) {
+      if(bno != 0) { // 게시글 수정
+         model.addAttribute("one",bService.read(bno));
+      }
+      return "board/write";
    }
    
-   public String write(BoardDTO bDto) {
-	   return "redirect:view?bno="+bDto.getBno();
+   @PostMapping("write")
+   public String write(BoardDTO bDto, HttpSession session) {
+      String name =(String) session.getAttribute("name");
+      bDto.setWriter(name);
+      log.info(">>>>>>>>>>>>>>>>"+bDto.getBno());
+      bService.write(bDto);
+      return "redirect:view?bno="+bDto.getBno();
+   }
+   
+   @GetMapping("delete")
+   public String delete(int bno) {
+      bService.delete(bno);
+      return "redirect:list";
    }
    
 }

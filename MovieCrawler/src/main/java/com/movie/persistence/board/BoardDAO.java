@@ -10,7 +10,7 @@ public interface BoardDAO {
 	
 	public void write(BoardDTO bDto); //게시글 등록
 	public void update(BoardDTO bDto); //게시글 수정
-	public void delete(BoardDTO bDto); //게시글 삭제
+	public void delete(int bno); //게시글 삭제
 	public BoardDTO read(int bno);	   //상세게시글(1건)
 	
 	//조회수 증가 처리

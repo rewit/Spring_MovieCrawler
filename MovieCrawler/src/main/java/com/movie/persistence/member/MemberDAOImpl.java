@@ -26,5 +26,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.viewMember",userid);
 	}
 
+	@Override
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.idCheck",id);
+	}
+
 }
 
