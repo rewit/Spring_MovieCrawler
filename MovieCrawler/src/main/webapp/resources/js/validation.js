@@ -73,6 +73,15 @@ var joinValidate = {
 			number_phone:{
 				code:5,
 				desc:'숫자만 입력하세요'
+			},
+			//email체크
+			success_email:{
+				code:0,
+				desc:'사용가능한 이메일입니다'
+			},
+			invalid_email:{
+				code:3,
+				desc:'올바른 이메일을 입력해주세요'
 			}
 		},
 		//실제 아이디 유효성 체크
@@ -144,21 +153,57 @@ var joinValidate = {
 				return this.resultCode.success_name;
 			}
 		},
+		//전화번호 체크
 		checkPhone:function(phone){
 			var regEmpty = /\s/g;
-			var regPhone = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
-			if((phone =="")||(phone.length==0)){
+			var regPhone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+			
+			if((phone =="") || (phone.length==0)){
 				return this.resultCode.empty_val;
 			}else if(phone.match(regEmpty)){
 				return this.resultCode.space_length_val;
 			}else if($.isNumeric(phone)==false){
 				return this.resultCode.number_phone;
-			}else if(regPhone.test(phone)){
+			}else if(!regPhone.test(phone)){
 				return this.resultCode.invalid_phone;
-			}else if((phone.length != 10)||(phone.length!=11)){
+			}else if(!((phone.length == 10)||(phone.length==11))){
 				return this.resultCode.length_phone;
 			}else{
 				return this.resultCode.success_phone;
+			}
+		},
+		checkEmail:function(email,url){
+			var regEmpty = /\s/g;
+			var regEmail = RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+			
+			if((email =="") || (email.length==0)){
+				return this.resultCode.empty_val;
+			}else if(email.match(regEmpty)){
+				return this.resultCode.space_length_val;
+			}else if(url != "" || url.length != 0 || url==''){
+				var fullMail = email + '@' + url;
+				if(!regEmail.test(fullMail)){
+					return this.resultCode.invalid_email;
+				}else{
+					return this.resultCode.success_email;
+				}
+			}
+		},
+		checkUrl:function(email,url){
+			var regEmpty = /\s/g;
+			var regEmail = RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+			
+			if((url =="") || (url.length==0)){
+				return this.resultCode.empty_val;
+			}else if(url.match(regEmpty)){
+				return this.resultCode.space_length_val;
+			}else if(email != "" || email.length != 0 || email==''){
+				var fullMail = email + '@' + url;
+				if(!regEmail.test(fullMail)){
+					return this.resultCode.invalid_email;
+				}else{
+					return this.resultCode.success_email;
+				}
 			}
 		}
 }
