@@ -2,7 +2,6 @@ package com.movie.controller.member;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.RespectBinding;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,4 +50,19 @@ public class MemberController {
 		log.info("AJAX ID 중복체크:"+id);
 		return mService.idCheck(id);
 	}
+	
+	//회원가입
+	@PostMapping("join")
+	public String join(MemberDTO memberDto) {
+		
+		return "member/join";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

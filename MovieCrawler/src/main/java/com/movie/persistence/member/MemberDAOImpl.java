@@ -32,5 +32,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.idCheck",id);
 	}
 
+	@Override
+	public String join(MemberDTO memberDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.join",memberDto);
+	}
+
 }
 

@@ -43,6 +43,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mDao.idCheck(id);
 	}
+	
+	@Override
+	public String join(MemberDTO memberDto) {
+		return mDao.join(memberDto);
+	}
 
 }
 

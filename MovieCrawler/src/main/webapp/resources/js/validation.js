@@ -210,21 +210,24 @@ var joinValidate = {
 
 //AJAX ID 중복체크
 function ajaxCheck(memId){
+	var return_val = false;
 	$.ajax({
 		type:"POST",
 		url:"idCheck?id="+memId,
 		contentType:"application/json",
+		async:false,
 		success:function(data){
 			if(data == 1){
 				$('#inputid').next().text('이미 사용중인 아이디 입니다').css('display','block').css('color','#FF3636');
-				return "overlap";
+				return_val =  false;
 			}else{
 				$('#inputid').next().text('사용가능한 아이디 입니다').css('display','block').css('color','#0000FF');
-				return "OK";
+				return_val = true;
 			}
 		},
 		error:function(){
 			alert("System Error")
 		}
 	});
+	return return_val;
 }

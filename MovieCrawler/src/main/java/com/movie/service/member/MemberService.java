@@ -10,7 +10,12 @@ public interface MemberService {
 	public boolean login(MemberDTO mDto, HttpSession session);
 	// 로그아웃
 	public void logOut(HttpSession session);
+	
+	
 	// 회원가입
+	public String join(MemberDTO mDto);
+	
+	
 	// 회원수정
 	// 회원삭제
 	// 회원정보 1건 검색
@@ -20,5 +25,6 @@ public interface MemberService {
 	
 	//AJAX: ID 중복 체크
 	public int idCheck(String id);
+	
 }
 
