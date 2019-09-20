@@ -30,4 +30,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM tbl_member
 		WHERE userid=#{id}
 	</delete>
+	<update id="update" parameterType="com.movie.domain.member.MemberDTO">
+		UPDATE tbl_member
+		SET passwd = #{passwd},
+			name = #{name},
+			phone = #{phone},
+			email = #{email},
+			zipcode = #{zipcode},
+			addr1 = #{addr1},
+			addr2 = #{addr2}
+		WHERE userid = #{userid}
+	</update>
 </mapper>

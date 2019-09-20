@@ -24,4 +24,5 @@ public interface MemberService {
 	//AJAX : 현재 PW Check
 	public int pwCheck(Map<String,String> map);
 	public void delete(String id,HttpSession session);
+	public void update(MemberDTO mDto,HttpSession session);
 }

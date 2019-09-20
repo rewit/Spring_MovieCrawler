@@ -102,22 +102,22 @@
 	<ul class="main-menu">
 		<li><a href="${path}/">홈</a></li>
 		<li><a href="${path}/board/list">커뮤니티</a></li>
-		<div class="dropdown">
-		  <button class="dropbtn">마이페이지</button>
-		  <div class="dropdown-content">
-		    <a href="#">수정</a>
-		    <a href="${path}/member/delete">탈퇴</a>
-		  </div>
-		</div>
+
 		<c:choose>
 			<c:when test="${empty sessionScope.name}">
 				<li><a href="#" id="login" class="a-menu">로그인</a></li>
 				<li><a class="jss" href="#">회원가입</a></li>
-				
+
 			</c:when>
 			<c:otherwise>
 				<li><a href="#" id="logout_btn" class="a-menu">로그아웃</a></li>
-				
+				<div class="dropdown">
+					<button class="dropbtn">마이페이지</button>
+					<div class="dropdown-content">
+					    <a href="${path}/member/update">수정</a>
+					    <a href="${path}/member/delete">탈퇴</a>
+					</div>
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</ul>

@@ -13,4 +13,5 @@ public interface MemberDAO {
 	public void write(MemberDTO mDto);
 	public int pwCheck(Map<String,String> map);
 	public int delete(String id);
+	public int update(MemberDTO mDto);
 }
