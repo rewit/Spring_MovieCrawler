@@ -1,5 +1,8 @@
 package com.movie.controller.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -34,35 +37,55 @@ public class MemberController {
 		return flag;
 	}
 	
-	@PostMapping("logout")
+	@PostMapping(value = "logout")
 	@ResponseBody
 	public void logout(HttpSession session) {
 		mService.logOut(session);
 	}
 	
-	@GetMapping("write")
+	@GetMapping(value = "write")
 	public String write() {
 		return "member/write";
 	}
+	
+	@PostMapping(value = "write")
+	public String write(MemberDTO mDto) {
+		
+		mService.write(mDto);
+		return "redirect:/";
+	}
+	
 	@ResponseBody
-	@PostMapping("idCheck")
+	@PostMapping(value = "idCheck")
 	public int idCheck(String id) {
-		log.info("AJAX ID 중복체크:"+id);
+		log.info("AJAX ID 중복체크 : " +id);
 		return mService.idCheck(id);
 	}
 	
-	//회원가입
-	@PostMapping("join")
-	public String join(MemberDTO memberDto) {
-		
-		return "member/join";
+	//회원탈퇴 View
+	@GetMapping("delete")
+	public String delete() {
+		return "member/delete";
 	}
 	
+	//회원탈퇴 Action
+	@PostMapping("delete")
+	public String delete(String id,HttpSession session) {
+		
+		mService.delete(id, session);
+		
+		return"redirect:/";
+	}
 	
-	
-	
-	
-	
+	//현재 비밀번호 체크(회원탈퇴용) - AJAX
+	@ResponseBody
+	@PostMapping("pwcheck")
+	public int pwCheck(String id,String pw) {
+		Map<String,String> map = new HashMap<>();
+		map.put("id",id);
+		map.put("pw",pw);
+		return mService.pwCheck(map);
+	}
 	
 	
 }

@@ -12,7 +12,7 @@ import com.movie.domain.board.ReplyDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Repository
 public class ReplyDAOImpl implements ReplyDAO {
 

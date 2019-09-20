@@ -14,6 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class BoardDTO {
+
 	private int bno;
 	private String title;
 	private String content;
@@ -21,6 +22,4 @@ public class BoardDTO {
 	private int viewcnt;
 	private int replycnt;
 	private Date regdate;
-	
-	
 }

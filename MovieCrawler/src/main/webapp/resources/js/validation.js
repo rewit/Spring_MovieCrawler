@@ -231,3 +231,30 @@ function ajaxCheck(memId){
 	});
 	return return_val;
 }
+
+//AJAX 현재 PW 체크 (사용: 회원탈퇴)
+function ajaxPwCheck(nowId,nowPw) {
+	   
+	   var return_val = false;
+	   $.ajax({
+	      url: 'pwcheck?id='+nowId+"&pw="+nowPw,
+	      type: 'POST',
+	      async: false,
+	      contentType: "application/json",
+	      success: function(data) {
+	         console.log(data);
+	         if(data == 1) {
+	            $('.error').text('비밀번호가 일치합니다').css('display','block').css('color','#0000FF');
+	            return_val = true;
+	         } else {
+	            $('.error').text('비밀번호가 일치하지 않습니다').css('display','block').css('color','#FF3636');
+	            return_val = false;
+	         }
+	      },
+	      error:function(){
+	         alert("System Error!!");
+	      } 
+	   })
+	   console.log(return_val);
+	   return return_val;
+	}

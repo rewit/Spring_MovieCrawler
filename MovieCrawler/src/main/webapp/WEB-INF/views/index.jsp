@@ -10,7 +10,7 @@
 <html>
 <head>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1.jquery.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" 

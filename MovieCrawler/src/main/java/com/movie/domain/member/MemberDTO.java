@@ -15,14 +15,13 @@ import lombok.ToString;
 @ToString
 public class MemberDTO {
 
-    private String userid; //varchar2(60),
-    private String passwd; // varchar2(60) not null,
-    private String name; // varchar2(30) not null,
-    private String phone; // varchar2(30) not null,
-    private String email; // varchar2(50) not null,
-    private String zipcode; // varchar2(200) not null,
-    private String addr1; // varchar2(200) not null,
-    private String addr2; // varchar2(200) not null,
-    private Date regdate; // date default sysdate
+	private String userid;
+	private String passwd;
+	private String name;
+	private int phone;
+	private String email;
+	private int zipcode;
+	private String addr1;
+	private String addr2;
+	private Date join_date;
 }
-

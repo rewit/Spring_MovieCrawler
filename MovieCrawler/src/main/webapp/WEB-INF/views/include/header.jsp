@@ -54,6 +54,42 @@
 .err_msg {
 	color: red;
 }
+.dropbtn {
+  background-color: #ea2129;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+	
+
 </style>
 </head>
 <script src="https://kit.fontawesome.com/8b002b7edc.js"></script>
@@ -66,14 +102,22 @@
 	<ul class="main-menu">
 		<li><a href="${path}/">홈</a></li>
 		<li><a href="${path}/board/list">커뮤니티</a></li>
+		<div class="dropdown">
+		  <button class="dropbtn">마이페이지</button>
+		  <div class="dropdown-content">
+		    <a href="#">수정</a>
+		    <a href="${path}/member/delete">탈퇴</a>
+		  </div>
+		</div>
 		<c:choose>
 			<c:when test="${empty sessionScope.name}">
 				<li><a href="#" id="login" class="a-menu">로그인</a></li>
 				<li><a class="jss" href="#">회원가입</a></li>
+				
 			</c:when>
-
 			<c:otherwise>
 				<li><a href="#" id="logout_btn" class="a-menu">로그아웃</a></li>
+				
 			</c:otherwise>
 		</c:choose>
 	</ul>

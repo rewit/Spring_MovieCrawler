@@ -1,5 +1,7 @@
 package com.movie.service.member;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -28,8 +30,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void logOut(HttpSession session) {
-		//로그아웃, 세션을 초기화 
+		// 로그아웃, 세션을 초기화
 		session.invalidate();
+		
 	}
 
 	@Override
@@ -40,14 +43,31 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idCheck(String id) {
-		// TODO Auto-generated method stub
+		
 		return mDao.idCheck(id);
 	}
-	
+
 	@Override
-	public String join(MemberDTO memberDto) {
-		return mDao.join(memberDto);
+	public void write(MemberDTO mDto) {
+		mDao.write(mDto);
+		
+	}
+
+	@Override
+	public int pwCheck(Map<String, String> map) {
+		return mDao.pwCheck(map);
+	}
+
+	@Override
+	public void delete(String id,HttpSession session) {
+		//회원탈퇴
+		//Session값 초기화
+		int result = mDao.delete(id);
+		
+		if(result >= 1) {
+			session.invalidate();
+		}
+
 	}
 
 }
-
