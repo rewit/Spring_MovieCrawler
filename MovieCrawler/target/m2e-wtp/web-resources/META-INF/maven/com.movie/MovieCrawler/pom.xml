@@ -22,6 +22,18 @@
       </repository>
    </repositories>
    <dependencies>
+   <!-- MongoDB -->
+   	<dependency>
+   		<groupId>org.mongodb</groupId>
+   		<artifactId>mongo-java-driver</artifactId>
+   		<version>3.10.2</version>
+   	</dependency>
+   	<dependency>
+   		<groupId>org.springframework.data</groupId>
+   		<artifactId>spring-data-mongodb</artifactId>
+   		<version>2.1.1.RELEASE</version>
+   	</dependency>
+   	
       <!-- JAVA HTML Parser -->
       <dependency>
          <groupId>org.jsoup</groupId>

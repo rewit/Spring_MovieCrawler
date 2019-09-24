@@ -9,5 +9,6 @@ public interface MovieDAO {
 	public void ticketRankWrite(MovieDTO mDto);
 	public List<MovieDTO> movieList(String sort);
 	public void deleteAll();
+	public List<MovieDTO> getMovieCode();
 	
 }

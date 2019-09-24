@@ -39,4 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteAll">
 		DELETE FROM tbl_movie
 	</delete>
+	<!-- 영화 댓글 크롤링에 필요한 영화 정보를 가져옴 -->
+	<select id="getMovieCode" resultType="com.movie.domain.movie.MovieDTO">
+		SELECT movie, daumcode
+		FROM tbl_movie
+		ORDER BY rank
+	</select>
 </mapper>

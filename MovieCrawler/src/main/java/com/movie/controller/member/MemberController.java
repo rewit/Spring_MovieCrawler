@@ -103,7 +103,7 @@ public class MemberController {
 	@PostMapping("update")
 	public String update(MemberDTO mDto,HttpSession session) {
 		//log.info(mDto.toString());
-		mService.update(mDto);
+		mService.update(mDto, session);
 		return "redirect:/";
 	}
 }

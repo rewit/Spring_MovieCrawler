@@ -33,4 +33,10 @@ public class MovieDAOImpl implements MovieDAO{
 		sqlSession.delete("movie.deleteAll");
 	}
 
+	@Override
+	public List<MovieDTO> getMovieCode() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("movie.getMovieCode");
+	}
+
 }

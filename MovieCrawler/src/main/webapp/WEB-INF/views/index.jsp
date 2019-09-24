@@ -46,6 +46,7 @@
 		<span><a href="${path}/sort?sort=date">개봉일순</a></span>
 		<span></span>
 	</div>
+	<a href="${path}/movie/detail">Read More</a>
 <body>
 	<a href="#" class="top"><ion-icon style="font-size:30px" name="arrow-round-up"></ion-icon></a>
 	<table>

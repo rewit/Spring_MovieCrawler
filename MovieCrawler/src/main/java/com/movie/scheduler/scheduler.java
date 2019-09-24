@@ -14,11 +14,17 @@ public class scheduler {
 
 	@Inject
 	MovieService mService;
-	
+	//영화 정보 수집
 	@Scheduled(cron = "0 0 12 * * *")
 	public void movieCollect() throws IOException {
 		
 		mService.ticketRank();
 		
 	}
+	//영화 평점 수집
+	@Scheduled(cron = "0 16 10 * * *")
+	public void replyCollect() throws IOException{
+		mService.replyMovie();
+	}
+	
 }

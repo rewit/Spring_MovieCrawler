@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="board">
-	<!-- 레코드 갯수 계산 -->
-	<select id="countArticle" resultType="int">
+
+<select id="countArticle" resultType="int">
 		SELECT COUNT(*)
 		FROM tbl_board
 		<include refid="search"/>
