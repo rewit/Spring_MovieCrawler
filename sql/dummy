@@ -1,4 +1,5 @@
 -- 커뮤니티에서 사용할 테이블 생성
+DROP TABLE tbl_reply;
 DROP TABLE tbl_board;
 CREATE TABLE tbl_board(
     bno NUMBER,
@@ -7,7 +8,10 @@ CREATE TABLE tbl_board(
     writer VARCHAR2(30) NOT NULL,
     viewcnt NUMBER DEFAULT 0,
     replycnt NUMBER DEFAULT 0,
-    regdate DATE DEFAULT SYSDATE
+    regdate DATE DEFAULT SYSDATE,
+    ref NUMBER NOT NULL,
+    re_step NUMBER NOT NULL,
+    re_level NUMBER NOT NULL
 );
 -- 제약조건 추가로 주기
 ALTER TABLE tbl_board
@@ -20,29 +24,56 @@ START WITH 1
 INCREMENT BY 1;
 
 -- 커뮤니티에 더미데이터 입력
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요1','hello1','user01');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요2','hello2','user02');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요3','hello3','user03');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요4','hello4','user04');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요5','hello5','user05');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요6','hello6','user06');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요7','hello7','user07');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요8','hello8','user08');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요9','hello9','user09');
-INSERT INTO tbl_board(bno, title, content, writer)
-VALUES(seq_board.NEXTVAL, '안녕하세요10','hello10','user010');
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요1','hello1','user01',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요2','hello2','user02',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요3','hello3','user03',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요4','hello4','user04',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요5','hello5','user05',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요6','hello6','user06',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요7','hello7','user07',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요8','hello8','user08',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요9','hello9','user09',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요10','hello10','user010',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요11','hello11','user011',seq_board.CURRVAL,1,0);
+INSERT INTO tbl_board(bno, title, content, writer,ref,re_step,re_level)
+VALUES(seq_board.NEXTVAL, '안녕하세요12','hello12','user012',seq_board.CURRVAL,1,0);
 COMMIT;
 
 SELECT
     *
 FROM tbl_board
 ORDER BY bno DESC;
+
+--회원 관련 테이블
+
+DROP TABLE tbl_member;
+CREATE TABLE tbl_member(
+    userid VARCHAR2(60),
+    passwd VARCHAR2(60) NOT NULL,
+    name VARCHAR2(30) NOT NULL,
+    phone VARCHAR2(30) NOT NULL,
+    email VARCHAR2(50) NOT NULL,
+    zipcode VARCHAR2(200) NOT NULL,
+    addr1 VARCHAR2(200) NOT NULL,
+    addr2 VARCHAR2(200) NOT NULL,
+    regdate DATE DEFAULT SYSDATE
+);
+
+INSERT INTO tbl_member(userid,passwd,name,phone,email,zipcode,addr1,addr2)
+VALUES('admin','1234','admin','01011112222','admin@movie.com','62320','광주광역시','주공아파트');
+
+
+SELECT movie, daumcode
+FROM tbl_movie
+ORDER BY rank;
