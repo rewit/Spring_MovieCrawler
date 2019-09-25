@@ -167,9 +167,19 @@
 			$('#re').click(function() {
 				location.href="${path}/board/list";
 			});
-			$('#write').click(function() {
-				location.href="${path}/board/write";
-			});
+			
+			if('${flag}' == 'answer'){
+				$('#write').click(function() {
+					location.href="${path}/board/answer";
+				});
+			}else{
+				$('#write').click(function() {
+					location.href="${path}/board/write";
+				});	
+			}
+			
+			
+			
 		});
 		//상세게시글에서 뒤로가기시 새로고침 동작
 		window.onpageshow = function(event){

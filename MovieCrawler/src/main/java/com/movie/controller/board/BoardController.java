@@ -98,12 +98,35 @@ public class BoardController {
 		bService.write(bDto);
 		return "redirect:view?bno="+bDto.getBno();
 	}
-	
+	//게시글 삭제
 	@GetMapping("delete")
 	public String delete(int bno) {
 		bService.delete(bno);
 		return "redirect:list";
 	}
 	
+	//게시글 답글 View
+	@GetMapping("answer")
+	public String answer(int bno,Model model) {
+		model.addAttribute("one",bService.read(bno));
+		model.addAttribute("flag","answer");
+		return "board/write";//게시글 등록, 수정
+	}
 	
+	//게시글 답글 Action
+	@PostMapping("answer")
+	public String answer(BoardDTO bDto) {
+		//dDto == 제목, 내용, 작성자, 게시글번호.
+		log.info("로그로그로그로그"+bDto.toString());
+		//답글을 달려고 하는 메인 게시글의 정보를 
+		BoardDTO pastDto = bService.read(bDto.getBno());
+		
+		bDto.setRef(pastDto.getRef());
+		bDto.setRe_step(pastDto.getRe_step());
+		bDto.setRe_level(pastDto.getRe_level());
+		
+		//DB에 답글 등록
+		bService.answer(bDto);
+		return "redirect:view?bno="+bDto.getBno();
+	}
 }

@@ -1,5 +1,6 @@
 package com.movie.service.board;
 
+import java.beans.Transient;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.movie.domain.board.BoardDTO;
 import com.movie.domain.board.ReplyDTO;
@@ -80,6 +82,21 @@ public class BoardServiceImpl implements BoardService {
 			// 조회수를 증가한 시간 session에 저장
 			session.setAttribute("update_time_"+bno, current_time);
 		}
+		
+	}
+	@Transactional
+	@Override
+	public void answer(BoardDTO bDto) {
+		//1.답글 순서 조정 : re_step + 1
+//		UPDATE tbl_board
+//		SET re_step = re_step + 1
+//		WHERE ref=#{ref} AND re_step > #{re_step}
+		bDao.updateStep(bDto); //ref, re_step
+		//2.답글 등록 
+		bDto.setTitle("RE:"+bDto.getTitle());
+		bDto.setRe_step(bDto.getRe_step() + 1);
+		bDto.setRe_level(bDto.getRe_level() + 1);
+		bDao.answer(bDto);
 		
 	}
 

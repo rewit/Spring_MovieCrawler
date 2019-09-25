@@ -62,4 +62,16 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void updateStep(BoardDTO bDto) {
+		// TODO Auto-generated method stub
+		sqlSession.update("board.updateStep",bDto);
+	}
+
+	@Override
+	public void answer(BoardDTO bDto) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("board.answer",bDto);
+	}
+
 }

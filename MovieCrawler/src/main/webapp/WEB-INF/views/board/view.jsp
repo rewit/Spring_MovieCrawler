@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/include.jsp"%>
-
+<%
+	String referer = request.getHeader("referer");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,48 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/common.css?ver=2019090502">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/view.css?ver=201909100128">
+	href="${path}/resources/css/view.css?ver=201909100111">
 <title>Insert title here</title>
+<style>
+#modal-delete {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	display: none;
+}
+
+.modal-body-delete {
+	width: 400px;
+	height: 150px;
+	border: 2px solid blue;
+	margin: 100px auto 0 auto;
+	border-radius: 5px;
+	background-color: #ccc;
+}
+
+.modal-header-delete {
+	background-color: black;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.modal-button-delete {
+	text-align: center;
+}
+.modal-div {
+margin-bottom: 20px;
+}
+.modal-button-no, .modal-button-yes {
+	width:100px;
+	height: 30px;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -33,7 +75,7 @@
 				var="regdate" />
 			<tr>
 				<th>작성일</th>
-				<td>${one.regdate}</td>
+				<td>${regdate}</td>
 				<th class="th-1">작성자</th>
 				<td>${one.writer}</td>
 			</tr>
@@ -44,14 +86,17 @@
 				<td>${one.viewcnt}</td>
 			</tr>
 			<tr>
-				<td class="content" colspan=4>${one.content}</td>
+				<td class="content-view" colspan=4>${one.content}</td>
 			</tr>
 
 		</table>
 		<div class="button-tas">
-			<button>게시판 목록</button>
-			<button class="button-de">삭제</button>
+			<button class=re_button>게시판 목록</button>
 			<button class="button-up">수정</button>
+			<button class="button-de">삭제</button>
+			<c:if test="${sessionScope.name != null}">
+				<button class="answer_btn">답글</button>
+			</c:if>
 		</div>
 	</div>
 	<div id="reply_wrap">
@@ -60,12 +105,36 @@
 		</div>
 	</div>
 </body>
+<div id="modal-delete">
+	<div class="modal-body-delete">
+	<div class="modal-header-delete">게시글 삭제</div>
+	<div class="modal-div">정말 게시글을 삭제하시겠습니까?</div>
+	<div class="modal-button-delete">
+	<button class="modal-button-no">아니오</button><button class="modal-button-yes">예</button>
+	</div>
+	</div>
+</div>
 <script>
+	$(function() {
 
+		$(".re_button").click(function(){
+			location.href = "${path}/board/list";
+		})
+		
+		$(".button-de").click(function() {
+			$("#modal-delete").css('display', 'block')
+		})
+		$(".modal-button-no").click(function() {
+			$("#modal-delete").css('display', 'none')
+		})
+		$(".modal-button-yes").click(function() {
+			location.href="${path}/board/delete?bno=${one.bno}";
+		})
 		if ("${one.writer}" == "${sessionScope.name}") {
 			$(".button-de").css('display', 'inline');
 			$(".button-up").css('display', 'inline');
-	
+		}
+		
 		function comment_list() {
 			$.ajax({
 				type: "get",
@@ -78,11 +147,6 @@
 		$(document).ready(function() {
 			comment_list();
 		})
-		
-		$(document).on("click","#button-up",function(){
-			location.href="${path}/board/write?bno=${one.bno}"
-		});
-		
 		/* View.jsp에서 commntlist의 태그, 이벤트 처리 할때 사용*/
 		$(document).on("click",".button-re-del", function() {
 			var rno =$(this).attr("data_num");
@@ -98,17 +162,6 @@
 				}
 			})
 		})
-		
-		$(document).ready(function(){
-			var bno = '${one.bno}';
-			if(bno == ''){ //게시글 등록
-				
-			}else{//게시글 수정
-				$(".btn").text("게시글 수정")
-			}
-		})
-		}
-		
 		$(document).on("click",".button-btn-wr", function() {
 			oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD", []);
 			var content = $("#replyInsert").val();
@@ -134,7 +187,17 @@
 					}
 				})
 			}
+		})
+		
+		$(document).on("click", ".button-up", function() {
+			location.href="${path}/board/write?bno=${one.bno}";
 		});
-
+		
+		$(document).on("click", ".answer_btn", function() {
+			location.href="${path}/board/answer?bno=${one.bno}";
+		});
+		
+	});
+	
 </script>
 </html>

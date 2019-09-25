@@ -18,5 +18,7 @@ public interface BoardDAO {
 	
 	public List<BoardDTO> listAll(HashMap<String, Object> option); // 게시글 목록 츌룍
 	public int countArticle(String search_option, String keyword); // 레코드 갯수 계산
+	public void updateStep(BoardDTO bDto);
+	public void answer(BoardDTO bDto);
 	
 }

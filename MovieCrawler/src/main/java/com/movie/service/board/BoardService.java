@@ -20,4 +20,5 @@ public interface BoardService {
 	
 	public List<BoardDTO> listAll(HashMap<String, Object> option); // 게시글 목록 출력
 	public int countArticle(String search_option, String keyword); // 레코드 갯수 계산
+	public void answer(BoardDTO bDto); //답글 등록
 }
